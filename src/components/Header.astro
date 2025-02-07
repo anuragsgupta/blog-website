@@ -1,10 +1,19 @@
 ---
 import Hamburger from './Hamburger.astro';
 import Navigation from './Navigation.astro';
+import Profile from './Profile.astro';
 ---
-<header>
-    <Hamburger/>
-  <nav>
-    <Navigation />
-  </nav>
+<header id="header">
+
+  <Profile/>
+  <Navigation />
 </header>
+
+<style> 
+#header {
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+</style>

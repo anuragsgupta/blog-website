@@ -1,0 +1,57 @@
+---
+const pfp = "../../public/mypfp.jpg";
+---
+
+<section id="profile_section">
+  <img src={pfp} alt="profile Photo" id="pfp" />
+  <div id="profile_info">
+    <h1>Anurag S Gupta</h1>
+    <h2>Student at LNCT Bhopal</h2>
+    <p>
+      Passion for learning new technologies and building innovative solutions.
+    </p>
+  </div>
+</section>
+
+<style>
+  #profile_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(48, 61, 48);
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  #pfp {
+    width: 8rem;
+    border-radius: 50%;
+    border: 1px solid forestgreen;
+    margin-bottom: 3rem;
+  }
+
+  #profile_info {
+    text-align: center;
+    padding: 0.5rem;
+    border: 1px solid forestgreen;
+  }
+
+  h1 + h2 {
+    font-size: 1.1rem;
+    margin-top: -1.4rem;
+    opacity: 0.9;
+    font-weight: 400;
+  }
+
+  @media screen and (min-width: 535px) {
+    #profile_section {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    #pfp {
+      margin-bottom: 0rem;
+      margin-right: 3remrem;
+    }
+  }
+</style>

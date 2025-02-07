@@ -4,21 +4,45 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 const pageTitle = "Home Page";
 ---
+
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    {/* Add a new meta description tag */}
+    <meta name="description" content="Frau Katarina's website" />
+    {/* Title is hardcoded as Astro, for now. */}
+    <title>Astro</title>
   </head>
   <body>
-    <Header />
-    <h1>{pageTitle}</h1>
-    <slot/>
-    <Footer />
-    <script>
-      import "../scripts/menu.js";
-    </script>
+    <main>
+      <Header/>
+      <slot />
+
+      
+      <Footer/>
+    </main>
   </body>
 </html>
+
+<style>
+  h1 {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  h1 + h2 {
+    font-size: 1.1rem;
+    margin-top: -1.4rem;
+    opacity: 0.9;
+    font-weight: 400;
+  }
+
+  main {
+    max-width: 40rem;
+    margin: auto;
+  }
+</style>
