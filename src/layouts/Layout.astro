@@ -18,8 +18,8 @@ const {title="default title", description="default description"} = Astro.props a
 
 			<Nav/>
 			<slot />
+			<Footer/>
 		</main>
-		<Footer/>
 	</body>
 </html>
 <script>
@@ -29,7 +29,6 @@ const {title="default title", description="default description"} = Astro.props a
 <style>
 	body{
 		display: flex;
-		flex-direction: column;
 		justify-content: center;
 	}
 	main {
