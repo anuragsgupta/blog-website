@@ -1,0 +1,66 @@
+---
+import navlinks from "../data/navLink";
+
+---
+
+<nav class="nav-bar">
+  <h1>Logo</h1>
+<div class="nav-link">
+    <ul class="nav-links">
+        {
+            navlinks.map((items) => {
+                return <li><a data-nav-link href={items.path}>{items.name}</a></li>;
+            })
+        }
+  </ul>
+</div>
+</nav>
+
+<style>
+    .nav-bar  {
+        display: flex;
+        justify-content: space-between;
+        margin: 1%;
+        background-color:#eeeee;
+        padding: 0% 1% ;
+        border-bottom: #bdbdbd 1px solid;
+
+    }
+    .nav-links{
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    a{
+        text-decoration: none;
+        color: #bdbdbd;
+
+    }
+    .nav-link{
+
+    }
+    li {
+        list-style: none;
+        font-size:larger;
+        font-weight: 600;
+        padding: 5px;    
+    }
+    li:hover {
+        text-decoration: underline;
+        /* background-color: #414141; */
+        border-radius: 5px;
+    
+        transition: 1s text-decoration;
+    }
+    .active {
+        color: black;
+        text-decoration: underline;
+        /* background-color: rgba(96, 225, 225, 0.495); */
+    }
+    
+</style>
+<script>
+    
+    import "../js/nav";
+</script>

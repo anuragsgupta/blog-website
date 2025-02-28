@@ -1,20 +1,21 @@
----
-const platform = "github";
-const username = "anuragsgupta";
-import Social from './Social.astro';
----
-<style>
-  footer {
-    padding: 3rem 0;
-    text-align: center;
-    font-size: 0.9rem;
-  }
-</style>
-
-<footer>
-  <Social platform="twitter" username="astrodotbuild" />
-  <Social platform="github" username="withastro" />
-  <Social platform="youtube" username="astrodotbuild" />
-  <h6 >&copy; 2025 Anurag Gupta</h6>
-  
+<footer >
+    <small>
+        &copy; copyright <span id='copyright-year'></span>. All rights reserved.
+    </small>
 </footer>
+
+    <script>
+      const year = new Date().getFullYear().toString();
+      const yearElement = document.querySelector('#copyright-year');
+      if (yearElement) {
+        yearElement.textContent = year;
+      }
+    </script>
+
+    <style>
+        footer {
+            padding: 3%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>

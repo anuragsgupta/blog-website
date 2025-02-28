@@ -1,76 +1,8 @@
-html {
-    background-color: #f1f5f9;
-    font-family: sans-serif;
-  }
- 
-html {
-  --background: white;
-  --grey-200: #222222;
-  --grey-400: #444444;
-  --grey-600: #333333;
-  --grey-900: #111111;
-}
 
-html.dark {
-  --background: black;
-  --grey-200: #eaeaea;
-  --grey-400: #acacac;
-  --grey-600: #ffffff;
-  --grey-900: #fafafa;
-}
-  
-  body {
-    margin: 0 auto;
+@media (max-width: 600px) {
+
+main {
     width: 100%;
-    max-width: 80ch;
-
-    line-height: 1.5;
-    font-family: "Inter", sans-serif;
-    padding: 0 0.5rem;
-  }
-  
-  * {
-    /* box-sizing: border-box; */
-  }
-  
-  h1 {
-    margin: 1rem 0;
-    font-size: 2.5rem;
-  }
-  
-  /* nav styles */
-  
-  .expanded {
-    display: unset;
-  }
-  
-  @media screen and (min-width: 636px) {
-    .nav-links {
- 
-    }
-
-  
-  }
-
-  // 📂 styles/global.css
-body {
-  color: var(--grey-600);
-  background: var(--background);
 }
-/* nav styles */
-.hamburger {
-    padding-right: 20px;
-    cursor: pointer;
-  }
-  
-  .hamburger .line {
-    display: block;
-    width: 40px;
-    height: 5px;
-    margin-bottom: 10px;
-    background-color: #ff9776;
-  }
-  .hamburger {
-    display: none;
-  }
-  
+
+}

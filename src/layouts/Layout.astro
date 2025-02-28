@@ -1,0 +1,51 @@
+---
+import MainHead from "./MainHead.astro";
+import Nav from "../components/Nav.astro"
+interface Props {
+    title: string;
+    description: string;
+}
+
+import Footer from "../components/Footer.astro";
+const {title="default title", description="default description"} = Astro.props as Props;
+---
+
+<!doctype html>
+<html lang="en">
+	<MainHead title={title} desc={description}/>
+	<body>	
+		<main>
+
+			<Nav/>
+			<slot />
+			<Footer/>
+		</main>
+	</body>
+</html>
+<script>
+
+</script>
+
+<style>
+	body{
+		display: flex;
+		justify-content: center;
+	}
+	main {
+
+		font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+		 margin: 0;
+		width: 80%; 
+		/* height: ;  */
+	}
+	@media (max-width: 768px) {
+	main, body{
+		
+		
+		width: 99%;
+		padding: 0px;
+		margin: 0px;
+	}	
+	}
+</style>
