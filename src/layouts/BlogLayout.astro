@@ -1,23 +1,36 @@
 ---
+import RelatedPosts from "../components/RelatedPosts.astro";
+import { filterPost, formatDate } from "../js/utils";
 import Layout from "./Layout.astro";
 
 const { frontmatter } = Astro.props;
-const { title, description, pubDate, author, image, tags } = frontmatter;
+const { title, description, pubDate, author, image, tags, category } = frontmatter;
+
+const allposts = await Astro.glob("../pages/blog/post*.md");
+const formattedPost = filterPost(allposts,{
+  limit:78
+});
+const relatedPosts = formattedPost
+  .filter((post: { frontmatter: { category: string; title: string; }; }) => post.frontmatter.category === category && post.frontmatter.title !== title)
+  
 ---
 
 <Layout title={title} description={description}>
   <header>
+
     <div class="post-header">
       <h1>{title}</h1>
-      <p>by {author} - {pubDate}</p>
+      <p> <strong>{author}</strong> - {formatDate( pubDate)}</p>
       <p>
-        tags:
+        <strong>tags:</strong>
         {tags ? tags.map((item: string) => <span> {item} </span>) : "none"}
       </p>
+      <p><strong>catergory:</strong> {category}</p>
       <img src={image.url || image.src} alt={image.alt}  />
       <article>  
           <slot />
         </article>
+        <RelatedPosts relPosts={relatedPosts} />
     </div>
   </header>
 </Layout>

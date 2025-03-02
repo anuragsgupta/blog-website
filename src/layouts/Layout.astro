@@ -1,51 +1,49 @@
 ---
 import MainHead from "./MainHead.astro";
-import Nav from "../components/Nav.astro"
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
 interface Props {
-    title: string;
-    description: string;
+  title: string;
+  description: string;
 }
 
-import Footer from "../components/Footer.astro";
-const {title="default title", description="default description"} = Astro.props as Props;
+const { title = "default title", description = "default description" } = Astro.props as Props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<MainHead title={title} desc={description}/>
-	<body>	
+  <MainHead title={title} desc={description} />
+  <body>
+    <div class="container">
 		<main>
-
-			<Nav/>
-			<slot />
-			<Footer/>
-		</main>
-	</body>
+			<Nav />
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
 </html>
-<script>
-
-</script>
 
 <style>
-	body{
-		display: flex;
-		justify-content: center;
-	}
-	main {
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
 
-		font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
-		 margin: 0;
-		width: 80%; 
-		/* height: ;  */
-	}
-	@media (max-width: 768px) {
-	main, body{
-		
-		
-		width: 99%;
-		padding: 0px;
-		margin: 0px;
-	}	
-	}
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+  }
 </style>

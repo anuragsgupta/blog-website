@@ -13,6 +13,12 @@ const {title,desc} = Astro.props as Props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={desc}>
+    <link
+    rel="alternate"
+    type="application/rss+xml"
+    title="MyBlog"
+    href="/rss.xml"
+/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com"
 crossorigin />

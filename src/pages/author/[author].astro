@@ -1,0 +1,80 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { filterPost, slugify } from "../../js/utils";
+
+// const allPosts = Object.values(import.meta.glob("./post*.md", { eager: true }));
+// const allPosts = await Astro.glob("../blog/post*.md");
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob("../blog/post*.md");
+  const filterPosts = filterPost(allPosts, {
+    limit: 45,
+  });
+  const allAuthor = [
+    ...new Set(
+      filterPosts.map(
+        (post: { frontmatter: { author: any } }) => post.frontmatter.author
+      )
+    ),
+  ];
+
+  return allAuthor.map((author) => {
+      const authorPost = filterPosts.filter(
+          (post: { frontmatter: { author: unknown } }) => {
+            //   console.log(post.frontmatter.author === author);
+              
+        return post.frontmatter.author === author;
+      }
+    );
+    return {
+      params: { author: slugify(author) },
+      props: { authorpost: authorPost, authorname: author as string },
+    };
+  });
+  // const catPosts = filterPosts.filter((post: { frontmatter: { category: any; }; }) => post.frontmatter.category === name)
+}
+
+const { author } = Astro.params;
+const { authorpost, authorname } = Astro.props;
+---
+
+<Layout title={authorname} description="Blog page">
+  <!-- <pre> {JSON.stringify(imgf.url, null, 2)}</pre> -->
+
+  <h2><small>Posts By :</small> {authorname} </h2>
+  <pre>
+      <!-- {JSON.stringify(filterPosts, null, 2)} -->
+    </pre>
+  <div class="post-container">
+    <!-- <BlogCard {...allPosts} url={imgf}/> -->
+
+    {
+      authorpost.map((post: any) => (
+        <BlogCard {...post.frontmatter} url={post.url} />
+      ))
+    }
+  </div>
+</Layout>
+<style>
+    small {
+        color: #e1c7c7;
+    }
+  ul li {
+    list-style: none;
+    /* border: 5px; */
+  }
+  .post-container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+  .blogposts > img {
+    height: 50%;
+  }
+  h2 {
+    text-align: center;
+    font: 2em;
+  }
+</style>

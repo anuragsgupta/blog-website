@@ -1,24 +1,31 @@
-<footer >
+<footer>
     <small>
-        &copy; copyright <span id='copyright-year'></span>. All rights reserved.
+      &copy; copyright <span id='copyright-year'></span>. All rights reserved.
     </small>
-</footer>
-
-    <script>
-      const year = new Date().getFullYear().toString();
-      const yearElement = document.querySelector('#copyright-year');
-      if (yearElement) {
-        yearElement.textContent = year;
-      }
-    </script>
-
-    <style>
-        footer {
-            background-color: #fffa;
-            padding: 0.5em;
-            display: flex;
-            font: 1.2em sans-serif;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+    <small><a href="/rss.xml"> Subscribe to RSS</a></small>
+  </footer>
+  
+  <script>
+    const year = new Date().getFullYear().toString();
+    const yearElement = document.querySelector('#copyright-year');
+    if (yearElement) {
+      yearElement.textContent = year;
+    }
+  </script>
+  
+  <style>
+    footer {
+      background-color: #fffa;
+      padding: 0.5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font: 1.2em sans-serif;
+      gap: 1em;
+      margin-top: auto;
+    }
+  
+    a {
+      text-decoration: none;
+    }
+  </style>

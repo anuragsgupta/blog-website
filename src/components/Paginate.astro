@@ -1,0 +1,44 @@
+---
+const { prev, next } = Astro.props;
+
+---
+
+
+<div>
+  {
+    prev && (
+      <button>
+        <a href={prev}>Prev</a>
+      </button>
+    )
+  }
+  {
+    next && (
+      <button>
+        <a href={next}>Next </a>
+      </button>
+    )
+  }
+</div>
+<style>
+    div {
+        /* background-color: aqua; */
+        width: 30%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        /* width: 100%; */
+    }
+    button {
+        background-color: ;
+        padding: 0.3rem 1rem;
+        border: solid 3px #dfdfdf;
+    }
+    a {
+        text-decoration: none;
+        font-weight: 600;
+    }
+    a:hover {
+        color: black;
+    }
+</style>

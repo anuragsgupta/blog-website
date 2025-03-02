@@ -69,11 +69,14 @@ import socialLinks from "../data/socialLink.js";
     }
     .profile__container {
       /* background-color: antiquewhite; */
-      justify-self: center;
-      flex-direction: column;
+      /* justify-self: flex-start; */
+      /* flex-direction: row; */
+      /* padding-bottom: 4em; */
+
     }
   }
   p {
+    
     line-height: 1.3rem;
     text-align: center;
     font-size: larger;
@@ -99,6 +102,8 @@ import socialLinks from "../data/socialLink.js";
     border-radius: 40%;
     width: 250px;
     height: 250px;
+
+
   }
   .profile {
     width: 100%;
@@ -106,8 +111,8 @@ import socialLinks from "../data/socialLink.js";
     align-items: center;
     height: 100%;
     flex-wrap: wrap;
-    align-content: center;
-    padding: 1rem 0 3rem 0;
+    align-content: flex-start;
+    padding: 3rem 0 3rem 0;
     justify-content: center;
     position: relative;
     overflow: hidden;

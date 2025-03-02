@@ -1,0 +1,82 @@
+---
+
+import Layout from "../../layouts/Layout.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { filterPost ,slugify} from "../../js/utils";
+
+// const allPosts = Object.values(import.meta.glob("./post*.md", { eager: true }));
+const allPosts = await Astro.glob("../blog/post*.md");
+const filterPosts = filterPost(allPosts, {
+  filterOutDrafts: true,
+  filterOutFuturePosts: true,
+  sortByDate: true,
+  limit: 20,
+  
+});
+
+export async function  getStaticPaths() {
+  return [
+    {
+        params: { category: slugify("Reference Docs") },
+        props: {name: "Reference Docs"}
+    },
+    {
+        params: { category: slugify("CSS") },
+        props: {name: "CSS"}
+    },
+    {
+        params: { category: slugify("Astro") },
+        props: {name: "Astro"}
+    },
+    {
+        params: { category: slugify("general") },
+        props: {name: "General"}
+    },
+  ]
+};
+
+const { category } = Astro.params;
+const { name } = Astro.props;
+const catPosts = filterPosts.filter((post: { frontmatter: { category: any; }; }) => post.frontmatter.category === name)
+---
+
+<Layout title={name} description="Blog page">
+    <!-- <pre> {JSON.stringify(imgf.url, null, 2)}</pre> -->
+  
+    <h2>{name} <small>Blogs</small></h2>
+    <pre>
+      <!-- {JSON.stringify(filterPosts, null, 2)} -->
+    </pre>
+    <div class="post-container">
+      <!-- <BlogCard {...allPosts} url={imgf}/> -->
+      
+      {
+          catPosts.map((post: any) => (
+              
+                  <BlogCard {...post.frontmatter} url={post.url} />
+              
+        ))
+      }
+    </div>
+  </Layout>
+  <style>
+    ul li {
+      list-style: none;
+      /* border: 5px; */
+    }
+    .post-container {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      flex-wrap: wrap;
+    }
+    .blogposts > img{
+      height: 50%;
+  
+    }
+    h2 {
+      text-align: center;
+      font: 2em;
+    }
+  </style>
+  
