@@ -7,9 +7,7 @@ const { frontmatter } = Astro.props;
 const { title, description, pubDate, author, image, tags, category } = frontmatter;
 
 const allposts = await Astro.glob("../pages/blog/post*.md");
-const formattedPost = filterPost(allposts,{
-  limit:78
-});
+const formattedPost = filterPost(allposts);
 const relatedPosts = formattedPost
   .filter((post: { frontmatter: { category: string; title: string; }; }) => post.frontmatter.category === category && post.frontmatter.title !== title)
   
@@ -17,7 +15,7 @@ const relatedPosts = formattedPost
 
 <Layout title={title} description={description} image={image}
 frontmatter={frontmatter}
-robots={frontmatter.robots} >
+robots={false} >
   <header>
 
     <div class="post-header">

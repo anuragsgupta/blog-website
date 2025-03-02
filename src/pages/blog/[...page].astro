@@ -5,11 +5,14 @@ import BlogCard from "../../components/BlogCard.astro";
 import Layout from "../../layouts/Layout.astro";
 import { filterPost } from "../../js/utils";
 import Paginate from "../../components/Paginate.astro";
+
+const { frontmatter } = Astro.props;
+// const { image } = frontmatter;
+
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const allPosts = Object.values(
     import.meta.glob("./post*.md", { eager: true })
   );
-  
 
   const filterPosts = filterPost(allPosts, {
     filterOutDrafts: true,
@@ -29,11 +32,16 @@ interface PageProps {
 }
 
 const { page } = Astro.props as PageProps;
+console.log(frontmatter);
 
 ---
 
-<Layout title="Blog" description="Blog page">
-  <!-- <pre> {JSON.stringify(imgf.url, null, 2)}</pre> -->
+<Layout
+  title="Blog"
+  description="Blog page"
+  robots={false}
+>
+  <!-- <pre> {JSON.stringify(...post.frontmatter, null, 2)}</pre> -->
 
   <h2>Latest Blogs</h2>
   <pre>
@@ -43,16 +51,13 @@ const { page } = Astro.props as PageProps;
     <!-- <BlogCard {...allPosts} url={imgf}/> -->
 
     {
-        page.data.map((post: any) => (
-                <BlogCard {...post.frontmatter} url={post.url} />
+      page.data.map((post: any) => (
+        <BlogCard {...post.frontmatter} url={post.url} />
       ))
     }
-<Paginate prev={page.url.prev} next={page.url.next} />
+    <Paginate prev={page.url.prev} next={page.url.next} />
   </div>
 </Layout>
-
-
-
 
 <style>
   ul li {

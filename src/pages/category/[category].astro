@@ -40,7 +40,7 @@ const { name } = Astro.props;
 const catPosts = filterPosts.filter((post: { frontmatter: { category: any; }; }) => post.frontmatter.category === name)
 ---
 
-<Layout title={name} description="Blog page">
+<Layout title={name} description="Blog page" >
     <!-- <pre> {JSON.stringify(imgf.url, null, 2)}</pre> -->
   
     <h2>{name} <small>Blogs</small></h2>

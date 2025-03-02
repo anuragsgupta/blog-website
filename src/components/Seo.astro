@@ -8,7 +8,7 @@ const {
   url = Astro.url,
   image,
   frontmatter,
-  robots,
+  robots=false,
 } = Astro.props;
 
 const jsonLD = jsonLDGenerator({
