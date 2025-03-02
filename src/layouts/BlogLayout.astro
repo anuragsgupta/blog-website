@@ -15,7 +15,9 @@ const relatedPosts = formattedPost
   
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} image={image}
+frontmatter={frontmatter}
+robots={frontmatter.robots} >
   <header>
 
     <div class="post-header">

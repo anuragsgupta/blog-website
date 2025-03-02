@@ -1,0 +1,9 @@
+
+{
+    "title": "My Astro Blog",
+    "description": "My musings about the Astro framework",
+    "image": {
+      "src": "/public/images/post-1.jpg",
+      "alt": "My Astro Blog"
+    }
+  }
