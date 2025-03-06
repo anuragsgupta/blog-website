@@ -15,7 +15,7 @@ const filterPosts = filterPost(allPosts, {
 // const profilePicture = "../../public/images/mypfp-removebg.png";
 const profilePicture =
   "https://media-hosting.imagekit.io//d52f65ea0b7b4861/mypfp2.jpg?Expires=1835372646&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ITH1ZYUn6L4uONiLznQfL0Ef~SOlL82OsVbVotfVvyJNsOhFmHao~7bidsWvcbO078af6uzH2Mj5JoRJdddcpQttsttXVsdWwx2SzpRcg8RZcTXYGFjK01rqqG6cZmvy9iFGevz6a2rV5pZMdJuHjJPNLt956tf1UF4uw9sb51sDxZlVpl~vKl~d52uu0E96AsPYn1RU8-DrohD8t8qVZyMDTY0u8rjxMrHFUjI-B7TtIL66SOWvOlVJRnVVsDnkC1iiLXkHEukenFXVPOs6TLCIDyvcLrUyHZ9b2KXqzLCKt4ULddtW2AnTqrD9yppbcraqucci9IryqCZcxju6wA__";
-const { title, desc, image, frontmatter, robots } = Astro.props;
+const { title="About Me", desc, image, frontmatter, robots } = Astro.props;
 ---
 
 <Layout title={title} description={desc} {image} {frontmatter} {robots}>

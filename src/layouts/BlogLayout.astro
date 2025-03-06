@@ -1,6 +1,6 @@
 ---
 import RelatedPosts from "../components/RelatedPosts.astro";
-import { filterPost, formatDate } from "../js/utils";
+import { filterPost, formatDate, slugify } from "../js/utils";
 import Layout from "./Layout.astro";
 
 const { frontmatter } = Astro.props;
@@ -20,12 +20,13 @@ robots={false} >
 
     <div class="post-header">
       <h1>{title}</h1>
-      <p> <strong>{author}</strong> - {formatDate( pubDate)}</p>
-      <p>
+      <p> <strong>author: </strong><a href={`/author/${slugify( author)}`}>{author}</a></p>
+      <p><strong>Publish:</strong> {formatDate( pubDate)}</p>
+      <!-- <p>
         <strong>tags:</strong>
         {tags ? tags.map((item: string) => <span> {item} </span>) : "none"}
-      </p>
-      <p><strong>catergory:</strong> {category}</p>
+      </p> -->
+      <p><strong>catergory:</strong> <a href={`/category/${slugify( category)}`}>{category}</a></p>
       <img src={image.url || image.src} alt={image.alt}  />
       <article>  
           <slot />
@@ -43,7 +44,7 @@ robots={false} >
     }
  article {
     font-family:'Courier New', Courier, monospace
-    font-size: 1rem;
+    /* font-size: 0.5rem; */
     /* text-align: justify; */
     line-height: 1.7rem;
  }
@@ -53,6 +54,8 @@ robots={false} >
 }
 p {
     color: rgb(107, 107, 107);
+    font-size:smaller;
+    line-height: 90%;
 }
 img {
     width: 100%;
