@@ -1,6 +1,7 @@
 ---
 import {Image} from "astro:assets";
 const {url, title, description, author, pubDate,image,category } = Astro.props;
+const {width="600", height="600/2.5", isImage=true}= Astro.props;
 import { formatDate, slugify } from "../js/utils";
 ---
 
@@ -11,8 +12,8 @@ import { formatDate, slugify } from "../js/utils";
       </a>
     </span>
   <a href={url}>
-    <Image src={image.url || image.src} alt={image.alt} class="blog-image"
-    width={600} height={600/2.5} format="webp"/>
+   {isImage && <Image src={image.url || image.src} alt={image.alt} class="blog-image"
+    width={width} height={height} format="webp"/>}
     <div class="blog-content">
       <h3 class="blog-title">{title}</h3>
       <p class="blog-meta">by <span><a href={`/author/${slugify(author)}`}>{author}</a></span> on {formatDate( pubDate)}</p>
@@ -38,9 +39,9 @@ h4 {
 .blog-container {
   /* width: fit-content; */
   /* height: 50%; */
-  width:500px;
+  width: 500px;
   flex-wrap: wrap;
-  background-color: #dfdfdf;
+  background-color: rgba(223, 223, 223,0.3);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -57,6 +58,8 @@ h4 {
   height: 250px; */
   border-bottom: 3px solid #ddd;
   border-radius: 5px;
+  height: 30vh;
+
 }
 
 .blog-content {

@@ -1,19 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import socialLinks from "../data/socialLink.js";
+import { filterPost } from "../js/utils";
+import BlogCard from "../components/BlogCard.astro";
+
+const allPosts = Object.values(import.meta.glob("./../pages/blog/post*.md", { eager: true }));
+
+const filterPosts = filterPost(allPosts, {
+  filterOutDrafts: true,
+  filterOutFuturePosts: true,
+  sortByDate: true,
+  limit: 2,
+});
 // const profilePicture = "../../public/images/mypfp-removebg.png";
 const profilePicture =
   "https://media-hosting.imagekit.io//d52f65ea0b7b4861/mypfp2.jpg?Expires=1835372646&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ITH1ZYUn6L4uONiLznQfL0Ef~SOlL82OsVbVotfVvyJNsOhFmHao~7bidsWvcbO078af6uzH2Mj5JoRJdddcpQttsttXVsdWwx2SzpRcg8RZcTXYGFjK01rqqG6cZmvy9iFGevz6a2rV5pZMdJuHjJPNLt956tf1UF4uw9sb51sDxZlVpl~vKl~d52uu0E96AsPYn1RU8-DrohD8t8qVZyMDTY0u8rjxMrHFUjI-B7TtIL66SOWvOlVJRnVVsDnkC1iiLXkHEukenFXVPOs6TLCIDyvcLrUyHZ9b2KXqzLCKt4ULddtW2AnTqrD9yppbcraqucci9IryqCZcxju6wA__";
-import socialLinks from "../data/socialLink.js";
 const { title, desc, image, frontmatter, robots } = Astro.props;
 ---
 
-<Layout
-  title={title}
-  description={desc}
-  {image}
-  {frontmatter}
-  {robots}
->
+<Layout title={title} description={desc} {image} {frontmatter} {robots}>
   <div class="profile">
     <div class="snowflakes" aria-hidden="true">
       <div class="snowflake">❅</div>
@@ -48,11 +53,26 @@ const { title, desc, image, frontmatter, robots } = Astro.props;
       </div>
     </div>
   </div>
+  <div >
+    <h3 class="recent_posts_title" >Recent Posts</h3>
+<div class="recent_posts">
+  
+   {
+     filterPosts.map((post: any) => (
+       <BlogCard isImage={false} {...post.frontmatter} url={post.url} />
+     ))
+   }
+</div>
+  </div>
 </Layout>
 
 <style>
+
   body {
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffffb3;
+  }
+  .blog-container {
+    /* width: 250px; */
   }
   h1 {
     font-size: 3rem;
@@ -218,5 +238,19 @@ const { title, desc, image, frontmatter, robots } = Astro.props;
       top: 100%;
       transform: translateX(20px);
     }
+  }
+  .recent_posts_title {
+    padding-top: 1em;
+    border-bottom: #bdbdbd 2px solid;
+  }
+  .recent_posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1em;
+  }
+  .blog-container {
+    
+    width: 30%;
   }
 </style>
