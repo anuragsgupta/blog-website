@@ -9,6 +9,6 @@ image:
 pubDate: 2024-07-08
 tags: ["astro", "blogging", "learning in public", "successes"]
 category: Reference Docs
-
+draft: true
 ---
 After a successful first week learning Astro, I decided to try some more. I wrote and imported a small component from memory!

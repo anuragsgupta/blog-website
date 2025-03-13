@@ -8,7 +8,7 @@ image: {
   alt: "A picture of a coder",
 }
 description: In this project, we’ll build out a custom Astro component for post tags.
-draft: false
+draft: true
 category: Astro
 ---
 

@@ -1,0 +1,155 @@
+---
+import Project from "../../../layouts/Project.astro";
+
+const title = "Guess A Number";
+---
+
+<Project {title}>
+    <div id="game-container">
+        <h1>{title}</h1>
+        <div id="sub-game-container">
+            <p>Correct guesses: <span id="guess-correct"></span></p>
+            <label for="num-ip">Enter Your Guess Number:</label>
+            <input type="number" name="no-ip" id="num-ip" />
+            <button id="btn">Guess</button>
+            <p>Guessed Numbers: <span id="guessed-num"></span></p>
+            <p>Remaining guesses: <span id="guess-rem"></span></p>
+            <button id="start">Start Game</button>
+            <button id="reset">Reset Game</button>
+        </div>
+    </div>
+    <script>
+
+
+        class Game {
+            totalGuesses;
+            remainingGuesses;
+            userGuesses = [];
+            guessNumber;
+            guessedRemElement = document.getElementById("guess-rem");
+
+            constructor(guess: any) {
+                this.totalGuesses = guess;
+                this.remainingGuesses = guess;
+                this.guessNumber = Math.floor(Math.random() * 100 + 1);
+                this.updateCorrectGuess();
+                this.updateRemainingGuesses();
+                this.setupGuessButton();
+            }
+
+            updateCorrectGuess() {
+                const guessCorrectElement = document.getElementById("guess-correct");
+                if (guessCorrectElement) {
+                    guessCorrectElement.innerText = this.guessNumber.toString();
+                }
+            }
+
+            updateRemainingGuesses() {
+                if (this.guessedRemElement) {
+                    this.guessedRemElement.innerText = this.remainingGuesses.toString();
+                }
+            }
+
+            validInput(input) {
+                const parsedInput = parseInt(input);
+                return !isNaN(parsedInput) && parsedInput > 0 ? parsedInput : null;
+            }
+
+            decrementRemainingGuesses() {
+                this.remainingGuesses--;
+                this.updateRemainingGuesses();
+            }
+
+            isGameOver() {
+                return this.remainingGuesses <= 0;
+            }
+
+            addUserGuess(guessValue) {
+                if (!this.isGameOver()) {
+                    this.userGuesses.push(guessValue.toString());
+                    const guessedNumElement = document.getElementById("guessed-num");
+                    if (guessedNumElement) {
+                        guessedNumElement.innerText = this.userGuesses.join(", ");
+                    }
+                }
+            }
+
+            setupGuessButton() {
+                const guessButton = document.getElementById("btn");
+                if (guessButton) {
+                    guessButton.addEventListener("click", () => {
+                        const guessInput = document.getElementById("num-ip");
+                        const guessValue = this.validInput(guessInput.value);
+
+                        if (!guessValue) {
+                            return alert("Enter a valid value between 0 to 100");
+                        }
+                        this.processGuess(guessValue);
+                    });
+                }
+            }
+
+            processGuess(guessValue) {
+                if (guessValue > this.guessNumber) {
+                    alert("Value is lower");
+                } else if (guessValue === this.guessNumber) {
+                    this.displayBanner("win");
+                    return alert("You guessed the correct number!");
+                } else {
+                    alert("Value is higher");
+                }
+
+                if (this.isGameOver()) {
+                    const guessInput = document.getElementById("num-ip");
+                    // guessInput.value = "";
+                    // this.userGuesses = [];
+                    // this.updateRemainingGuesses();
+                    // const guessedNumElement = document.getElementById("guessed-num");
+                    // if (guessedNumElement) {
+                    //     guessedNumElement.innerText = "";
+                    // }
+                    new Game(guess);
+                    return this.displayBanner("lose");
+                }
+
+                this.decrementRemainingGuesses();
+                this.addUserGuess(guessValue);
+            }
+
+            displayBanner(status) {
+                const banner = document.createElement("div");
+                banner.setAttribute("id", status);
+                banner.style.position = "relative";
+                banner.style.zIndex = "2";
+                banner.style.padding = "2em";
+                banner.innerText = `You ${status}`;
+                const gameContainer = document.getElementById("game-container");
+                gameContainer?.appendChild(banner);
+            }
+        }
+
+        const startButton = document.getElementById("start");
+        const resetButton = document.getElementById("reset");
+
+        if (startButton) {
+            startButton.addEventListener("click", () => {
+               new Game(2);
+             
+            });
+        }
+
+        if (resetButton) {
+            resetButton.addEventListener("click", () => {
+                new Game(5);
+            });
+        }
+    </script>
+    <style>
+        #win, #lose {
+            padding: 2em;
+            background-color: beige;
+            position: absolute;
+            z-index: 2;
+        }
+    </style>
+</Project>

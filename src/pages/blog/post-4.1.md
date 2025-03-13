@@ -9,6 +9,7 @@ image:
     alt: "The Astro logo on a dark background  rays."
 tags: ["astro", "learning in public", "setbacks", "community"]
 category: Astro
+draft: true
 
 ---
 It wasn't always smooth sailing, but I'm enjoying building with Astro. And, the [Discord community](https://astro.build/chat) is really friendly and helpful!

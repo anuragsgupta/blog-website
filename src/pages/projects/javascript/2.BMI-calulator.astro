@@ -1,0 +1,68 @@
+---
+// import Layout from "../../layouts/Layout.astro";
+import Project from "../../../layouts/Project.astro";
+---
+
+<Project title="BMI Calculator">
+  <!-- <div id="container"> -->
+    <div id="form-div">
+      <h1>BMI Calculator</h2>
+      <form>
+        <label for="Height">Enter Height (cm)</label>
+        <input type="number" name="height-ip" id="height-ip" />
+        <label for="Weight">Enter Weight (kg)</label>
+        <input type="number" name="weight-ip" id="weight-ip" />
+        <button type="button" value="calulate BMI" id="result-btn">
+          result</button
+        >
+        <label for="result" id="result">result</label>
+      </form>
+    </div>
+  <!-- </div> -->
+</Layout>
+<style>
+  #container {
+    display: flex;
+    justify-content: center;
+    /* gap: 10em; */
+  }
+  h1 {
+    width: fit-content;
+  }
+  label,
+  input {
+    margin-top: 0.5em;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+</style>
+<script>
+  const forms = document.querySelector("form");
+  console.log(forms);
+  
+  const btn = document.querySelector("#result-btn");
+  btn?.addEventListener('click' ,(e) => {
+      console.log(e);
+      e.preventDefault()
+      console.log(forms?.querySelector("#height-ip")?.nodeValue)
+
+    const heightInput = forms?.querySelector("#height-ip");
+    const weightInput = forms?.querySelector("#weight-ip");
+    const height = heightInput ? parseInt((heightInput as HTMLInputElement).value) : 0;
+    const weight = weightInput ? parseInt((weightInput as HTMLInputElement).value) : 0;
+    if (height > 0 && weight > 0) {
+      const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+      const resultLabel = forms?.querySelector("#result");
+      if (resultLabel) {
+        resultLabel.textContent = `Your BMI is ${bmi}`;
+      }
+    } else {
+      alert("Please enter valid height and weight");
+    }
+    console.log("hello");
+    
+    })
+</script>

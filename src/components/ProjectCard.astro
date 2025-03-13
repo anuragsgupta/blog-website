@@ -1,0 +1,37 @@
+---
+interface Props {
+    frontmatter: any;
+    url: string;
+    file: any;
+}
+const {url,frontmatter} = Astro.props as Props;
+const ti = url.split('/')
+console.log(ti);
+
+const title = ti.at(-1);
+const lang = ti.at(-2);
+
+
+---
+
+<div class="projectCards">
+    <p class="blog-meta">{lang}</p>
+    <h3 class="project-title"><a href={url}>{ (title)?.toLowerCase()}</a></h3>
+    <!-- <p class="blog-description">{description}</p> -->
+</div>
+
+<style>
+    .projectCards {
+        /* border: 2px solid black; */
+        font-family: monospace;
+        font-size: larger;
+        padding: 0.4em;
+        margin: 0.4em;
+        background-color: whitesmoke;
+        width: 75%;
+        border: 2px solid bisque;
+    }
+    h3 {
+        /* border-bottom: 2px slategray solid; */
+    }
+</style>

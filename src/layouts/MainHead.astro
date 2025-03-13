@@ -6,7 +6,7 @@ interface Props {
   frontmatter: string;
   robots: string;
 }
-
+import '../styles/global.css';
 const { title, desc, image, frontmatter, robots=false} = Astro.props as Props;
 import Seo from "../components/Seo.astro";
 ---
@@ -17,6 +17,7 @@ import Seo from "../components/Seo.astro";
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
+  
   <meta name="description" content={desc} />
   <Seo
     title={title}

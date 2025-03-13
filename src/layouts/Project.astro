@@ -1,0 +1,17 @@
+---
+import Layout from "./Layout.astro";
+
+const {title,desc} = Astro.props;
+---
+<Layout {title} {desc}>
+<div id="project-container">
+    <slot/>
+
+</div>
+</Layout>
+<style>
+    #project-container {
+        display: flex;
+        justify-content: center;
+    }
+</style>

@@ -1,0 +1,70 @@
+---
+// import Layout from "../../layouts/Layout.astro";
+import Project from "../../../layouts/Project.astro";
+---
+
+<Project title="Digital Clock">
+    <div>
+        <h1>Digital Clock</h1>
+        <div id="body">
+            <div class="hand" id="hour">00:</div>
+            <span></span>
+            <div class="hand" id="minute">00:</div>
+            <span></span>
+            <div class="hand" id="seconds">00</div>
+        </div>
+    </div>
+</Project>
+<script>
+        setInterval(()=>{
+                const date = new Date();
+                const hourElement = document.getElementById("hour");
+                const minElement = document.getElementById("minute");
+                const secElement = document.getElementById("seconds");
+
+                if(hourElement && minElement && secElement) {
+                        hourElement.innerText = date.getHours().toString().padStart(2, '0') + ":";
+                        minElement.innerText = date.getMinutes().toString().padStart(2, '0') + ":";
+                        secElement.innerText = date.getSeconds().toString().padStart(2, '0');
+                }
+        }, 1000);
+</script>
+<style>
+        #body {
+                display: flex;
+                flex-direction: row;
+                border: 2px solid rgb(205, 222, 205);
+                padding: 0rem 0.5rem ;
+                justify-content: center;
+        }
+        span {
+            border: 1px solid rgb(180, 215, 180);
+            
+        }
+        .hand {
+
+            border: 1px solid palegreen;
+            border-right: 2px solid red;
+            
+            padding: 1.2em;
+                background-color: antiquewhite;
+                margin: 1%;
+                font-size: x-large;
+                font-family: monospace;
+                border-radius: 20%;
+                transition: transform 0.5s ease-in-out;
+                animation: pulse 60s infinite;
+
+        }
+        @keyframes pulse {
+                0% {
+                        transform: scale(1);
+                }
+                50% {
+                        transform: scale(1.05);
+                }
+                100% {
+                        transform: scale(1);
+                }
+        }
+</style>

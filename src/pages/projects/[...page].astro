@@ -1,0 +1,50 @@
+---
+
+import { promise } from "astro:schema";
+import Layout from "../../layouts/Layout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+
+
+// const { image } = frontmatter;
+// console.log(frontmatter);
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const allPosts = Object.values(
+    import.meta.glob("./javascript/*.astro", { eager: true })
+  );
+
+  return paginate(allPosts, { pageSize: 4 });
+}
+
+interface PageProps {
+  page: {
+    url: string
+  
+    data: Array<{ frontmatter: any; url: string, file: any }>,
+  };
+}
+const { page } = Astro.props as PageProps;
+---
+
+<Layout title="page not found" description="page not found"
+image="https://img.lovepik.com/element/40021/7866.png_1200.png"
+frontmatter={null} >
+
+    <div class="h1" style={{ textAlign: "center", marginTop: "50px" }}>
+        <!-- <img src="https://img.lovepik.com/element/40021/7866.png_1200.png" alt="image for page not found" width="500vb"> -->
+        <h1>Working Progress</h1>
+        
+    </div>
+</Layout>
+<!-- <Layout title="My Projects" description="A list of my projects">
+    <h1>Projects</h1>
+    <p>Here are some of the projects I've worked on:</p>
+    <ul>
+      {
+        page.data.map((project) => (
+          <ProjectCard {...project} />
+        ))
+      }
+  
+    </ul>
+</Layout> -->
